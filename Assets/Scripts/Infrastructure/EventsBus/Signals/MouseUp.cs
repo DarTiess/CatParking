@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Level.EventsBus.Signals
+﻿namespace Infrastructure.EventsBus.Signals
 {
     public struct MouseUp
     {

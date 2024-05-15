@@ -1,9 +1,10 @@
-﻿using Infrastructure.Level.EventsBus;
-using Infrastructure.Level.EventsBus.Signals;
+﻿using Game.CatView;
+using Infrastructure.EventsBus;
+using Infrastructure.EventsBus.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace DefaultNamespace
+namespace Game
 {
     public class LinesDrawer: MonoBehaviour
     {
@@ -21,6 +22,13 @@ namespace DefaultNamespace
             _eventBus.Subscribe<MouseDown>(OnMouseDown);
             _eventBus.Subscribe<MouseMove>(OnMouseMove);
             _eventBus.Subscribe<MouseUp>(OnMouseUp);
+        }
+
+        private void OnDisable()
+        {
+            _eventBus.Unsubscribe<MouseDown>(OnMouseDown);
+            _eventBus.Unsubscribe<MouseMove>(OnMouseMove);
+            _eventBus.Unsubscribe<MouseUp>(OnMouseUp);
         }
 
         private void OnMouseDown(MouseDown obj)

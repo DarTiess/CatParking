@@ -1,9 +1,9 @@
-﻿using Infrastructure.Level.EventsBus;
-using Infrastructure.Level.EventsBus.Signals;
+﻿using Infrastructure.EventsBus;
+using Infrastructure.EventsBus.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace DefaultNamespace
+namespace Game
 {
     public class UserInput : MonoBehaviour
     {

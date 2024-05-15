@@ -1,28 +1,31 @@
-using Infrastructure.Level.EventsBus;
-using Infrastructure.Level.EventsBus.Signals;
+using Infrastructure.EventsBus;
+using Infrastructure.EventsBus.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class SceneReloader : MonoBehaviour
+namespace UI
 {
-   private Button _button;
-   private IEventBus _eventBus;
-
-   [Inject]
-   public void Construct(IEventBus eventBus)
+   public class SceneReloader : MonoBehaviour
    {
-      _eventBus = eventBus;
-   }
+      private Button _button;
+      private IEventBus _eventBus;
 
-   private void Start()
-   {
-      _button = GetComponent<Button>();
-      _button.onClick.AddListener(RestartScene);
-   }
+      [Inject]
+      public void Construct(IEventBus eventBus)
+      {
+         _eventBus = eventBus;
+      }
 
-   private void RestartScene()
-   {
-      _eventBus.Invoke(new RestartScene());
+      private void Start()
+      {
+         _button = GetComponent<Button>();
+         _button.onClick.AddListener(RestartScene);
+      }
+
+      private void RestartScene()
+      {
+         _eventBus.Invoke(new RestartScene());
+      }
    }
 }

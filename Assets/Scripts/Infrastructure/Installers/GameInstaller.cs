@@ -1,22 +1,24 @@
-using Infrastructure;
-using Infrastructure.Level.EventsBus;
+using Infrastructure.EventsBus;
 using Zenject;
 
-public class GameInstaller : MonoInstaller
+namespace Infrastructure.Installers
 {
-    public override void InstallBindings()
+    public class GameInstaller : MonoInstaller
     {
-        CreateEventBus();
-        CreateSceneLoader();
-    }
-    private void CreateEventBus()
-    {
-         Container.BindInterfacesAndSelfTo<EventBus>().AsSingle();
-    }
+        public override void InstallBindings()
+        {
+            CreateEventBus();
+            CreateSceneLoader();
+        }
+        private void CreateEventBus()
+        {
+            Container.BindInterfacesAndSelfTo<EventBus>().AsSingle();
+        }
 
-    private void CreateSceneLoader()
-    {
-        Container.Bind<SceneLoader>().AsSingle().NonLazy();
+        private void CreateSceneLoader()
+        {
+            Container.Bind<SceneLoader>().AsSingle().NonLazy();
         
+        }
     }
 }

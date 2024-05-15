@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Level.EventsBus;
-using Infrastructure.Level.EventsBus.Signals;
+using Infrastructure.EventsBus;
+using Infrastructure.EventsBus.Signals;
+using Infrastructure.Installers;
 using UnityEngine;
 using Zenject;
 
-namespace DefaultNamespace
+namespace Game
 {
     public class Game: MonoBehaviour, IGame
     {

@@ -1,11 +1,12 @@
-﻿using DG.Tweening;
-using Infrastructure.Level.EventsBus;
-using Infrastructure.Level.EventsBus.Signals;
+﻿using System;
+using DG.Tweening;
+using Infrastructure.EventsBus;
+using Infrastructure.EventsBus.Signals;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure
 {
-    public class SceneLoader
+    public class SceneLoader: IDisposable
     {
         private IEventBus _eventBus;
 
@@ -55,6 +56,13 @@ namespace Infrastructure
         private void OnRestartScene(RestartScene obj)
         {
            RestartLevel();
+        }
+
+        public void Dispose()
+        {
+            _eventBus.Unsubscribe<RestartScene>(OnRestartScene);
+            _eventBus.Unsubscribe<Win>(OnWinLevel);
+            _eventBus.Unsubscribe<Failed>(OnFailedLevel);
         }
     }
 }

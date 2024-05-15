@@ -1,8 +1,9 @@
 ﻿using DG.Tweening;
+using Infrastructure.Installers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace DefaultNamespace
+namespace Game.CatView
 {
     [RequireComponent(typeof(Animator))]
     public class Cat: MonoBehaviour

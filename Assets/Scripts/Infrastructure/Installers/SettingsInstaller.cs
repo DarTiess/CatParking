@@ -1,12 +1,15 @@
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "SettingsInstaller", menuName = "Installers/SettingsInstaller")]
-public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
+namespace Infrastructure.Installers
 {
-    public CatSettings CatSettings;
-    public override void InstallBindings()
+    [CreateAssetMenu(fileName = "SettingsInstaller", menuName = "Installers/SettingsInstaller")]
+    public class SettingsInstaller : ScriptableObjectInstaller<SettingsInstaller>
     {
-        Container.BindInstance(CatSettings);
+        public CatSettings CatSettings;
+        public override void InstallBindings()
+        {
+            Container.BindInstance(CatSettings);
+        }
     }
 }

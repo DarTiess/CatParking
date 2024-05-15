@@ -1,9 +1,11 @@
 ﻿using System;
-using Infrastructure.Level.EventsBus;
-using Infrastructure.Level.EventsBus.Signals;
+using Game.CatView;
+using Infrastructure.EventsBus;
+using Infrastructure.EventsBus.Signals;
+using Infrastructure.Installers;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Game
 {
     public class Route: MonoBehaviour
     {
@@ -35,6 +37,12 @@ namespace DefaultNamespace
             _color = _catSetting.Color[index];
             SetMainColor();
         }
+
+        private void OnDisable()
+        {
+            _eventBus.Unsubscribe<ParkLinkedToLine>(OnParkLinkedToLineHandler);
+        }
+
         private void OnParkLinkedToLineHandler(ParkLinkedToLine obj)
         {
             if (obj.Route == this)

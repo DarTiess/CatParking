@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace
+﻿namespace Game
 {
     public interface IGame
     {
