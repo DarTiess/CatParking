@@ -41,7 +41,9 @@ namespace Game
                 {
                     _currentRoute = cat.Route;
                     _currentLine = _currentRoute.Line;
-                    _currentLine.Initialize();
+                    _currentLine.ShowLine();
+                    
+                    _eventBus.Invoke(new BeginDraw(_currentRoute));
                 }
             }
         }
@@ -56,7 +58,15 @@ namespace Game
                 return;
            
             Vector3 newPoint = contactInfo.Point;
+
+            if (_currentLine.Lenght >= _currentRoute.MaxLineLenght)
+            {
+                _currentLine.Clear();
+                MouseUpHandler();
+                return;
+            }
             _currentLine.AddPoints(newPoint);
+            _eventBus.Invoke(new Draw());
 
             bool isPark = contactInfo.Collider.TryGetComponent(out Park park);
             if (isPark)
@@ -65,12 +75,13 @@ namespace Game
                 if (parkRoute == _currentRoute)
                 {
                     _currentLine.AddPoints(contactInfo.Transform.position);
-                    MouseUpHandler();
+                    _eventBus.Invoke(new Draw());
                 }
                 else
                 {
                     _currentLine.Clear();
                 }
+                MouseUpHandler();
             }
         }
 
@@ -106,6 +117,7 @@ namespace Game
             }
 
             ResetDrawer();
+            _eventBus.Invoke(new EndDraw());
         }
 
         private void ResetDrawer()

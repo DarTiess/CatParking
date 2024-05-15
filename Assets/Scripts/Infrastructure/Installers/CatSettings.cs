@@ -22,11 +22,13 @@ namespace Infrastructure.Installers
         [SerializeField] private float explosionRadius=3f;
         [SerializeField] private float explosionPosition=2f;
         [SerializeField] private float explosionAngle=10f;
-    
+        [SerializeField] private float lineLenght;
+
         public float DurationMultiplier=>durationMultiplier;
         public float ExplosionForce => explosionForce;
         public float ExplosionRadius => explosionRadius;
         public float ExplosionPosition => explosionPosition;
         public float ExplosionAngle => explosionAngle;
+        public float LineLenght => lineLenght;
     }
 }

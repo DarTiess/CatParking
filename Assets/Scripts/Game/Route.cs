@@ -18,6 +18,7 @@ namespace Game
         public Cat Cat => _cat;
         public Vector3[] LinePoints => _linePoints;
         public Color Color => _color;
+        public float MaxLineLenght => _maxLenght;
 
         private bool _isActive=true;
         private Color _color;
@@ -25,6 +26,7 @@ namespace Game
         private IEventBus _eventBus;
         private Vector3[] _linePoints;
         private IGame _game;
+        private float _maxLenght;
 
         public event Action CatFinished;
 
@@ -35,6 +37,7 @@ namespace Game
             _game = game;
             _catSetting = catSettings;
             _color = _catSetting.Color[index];
+            _maxLenght = _catSetting.ActionSettings.LineLenght;
             SetMainColor();
         }
 
@@ -73,6 +76,7 @@ namespace Game
             _cat.SetColor(_color);
             _cat.Initialize(this, _catSetting.ActionSettings);
             _park.Initialize(this);
+           
         }
 
         public void CatOnPlace()
